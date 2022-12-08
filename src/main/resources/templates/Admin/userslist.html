@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Users list</title>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <td>ID</td>
+    <td>User name</td>
+    <td>Firstname</td>
+    <td>Lastname</td>
+    </thead>
+    <tr th:each="user: ${users}">
+        <td>
+            <a th:href="@{/users/viewUser(id = ${user.getId()})}" th:text="${user.getId()}"></a>
+        </td>
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getFirstname()}"></td>
+        <td th:text="${user.getLastname()}"></td>
+
+    </tr>
+</table>
+<a th:href="@{/users/new}">Create new user</a>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<h1>Admin page</h1>
+
+
+<table border="1">
+  <thead>
+  <td>ID</td>
+  <td>Username</td>
+  <td>First name</td>
+  <td>Last name</td>
+  <td>Role</td>
+  </thead>
+    <tr th:each="user: ${users}">
+        <td >
+            <a th:href = "@{/admin/show(id = ${user.getId()})}" th:text="${user.getId()}"></a>
+        </td>
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getFirstName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
+        <td>
+            <li th:each="role: ${user.getRoles()}" th:text="${role.getName()}"></li>
+        </td>
+    </tr>
+</table>
+
+
+<a th:href="@{/new}">Make new user</a>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+
+
+</body>
+</html>
